@@ -38,6 +38,7 @@ const StepBadge = ({ step }) => (
   <p className="text-[10px] font-medium text-muted mb-3">Step {step} of 3</p>
 );
 
+/** Wraps a screenshot preview so it fills a BentoCard's background area */
 function StepBackground({ children, tint = "", image, alt = "Application preview" }) {
   return (
     <div className={`absolute inset-0 ${tint} flex items-start justify-center p-3 bg-transparent`}>

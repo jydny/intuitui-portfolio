@@ -14,7 +14,7 @@ const PROJECTS = [
     label: "Banking App",
     blurb: "User Experience",
     image: frame1,
-    href: "#/work/jovia-deposit-loan",
+    href: "#/work/jovia-custom-app",
   },
   {
     id: "design_system",
@@ -48,7 +48,7 @@ export default function FeaturedWork() {
     align: "center",
     containScroll: false,
     skipSnaps: false,
-    duration: 45,
+    duration: 45, // higher = slower/smoother glide (embla's internal scroll frames)
   });
 
   const [selectedIndex, setSelectedIndex] = useState(0);
