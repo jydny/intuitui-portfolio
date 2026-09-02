@@ -7,6 +7,8 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import DesignSystem from "./pages/DesignSystem";
 import CustomApp from "./pages/CustomApp";
+import Branding from "./pages/Branding";
+import CustomModules from "./pages/CustomModules";
 
 export default function App() {
   return (
@@ -19,6 +21,8 @@ export default function App() {
             <Route path="/work" element={<Work />} />
             <Route path="/work/design-system" element={<DesignSystem />} />
             <Route path="/work/jovia-custom-app" element={<CustomApp />} />
+            <Route path="/work/branding" element={<Branding />} />
+            <Route path="/work/modules" element={<CustomModules />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>

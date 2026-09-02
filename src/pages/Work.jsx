@@ -1,5 +1,16 @@
 import { projects } from "../data/projects";
 import ProjectCard from "../components/ProjectCard";
+import app from "../assets/proj_app_576w.png";
+import ds from "../assets/proj_ds_576w.png";
+import lab from "../assets/proj_lab_576w.png";
+import modules from "../assets/proj_modules_576w.png";
+
+const projectImages = {
+  "jovia-custom-app": app,
+  "design-system": ds,  
+  "modules": modules,
+  "branding": lab,
+};
 
 function GenericPreview({ accent }) {
   return (
@@ -28,7 +39,13 @@ export default function Work() {
           <ProjectCard
             key={project.slug}
             project={project}
-            preview={<GenericPreview accent={project.accent} />}
+            preview={
+              projectImages[project.slug] ? (
+                <img src={projectImages[project.slug]} alt={project.title} className="w-full h-full object-cover" />
+              ) : (
+                <GenericPreview accent={project.accent} />
+              )
+            }
           />
         ))}
       </div>
