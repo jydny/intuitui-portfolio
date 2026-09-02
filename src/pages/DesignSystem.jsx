@@ -1,178 +1,103 @@
 import CaseStudyHeader from "../components/CaseStudyHeader";
 import ProjectCard from "../components/ProjectCard";
+import { BentoGrid, BentoCard } from "../components/Bentogrid";
 import { getProject, projects } from "../data/projects";
 
-const typeScale = [
-  { name: "h1", weight: "700", size: "48px", sample: "Almost before we knew it, we had..." },
-  { name: "h2", weight: "700", size: "36px", sample: "Almost before we knew it, we had left the ground." },
-  { name: "h3", weight: "600", size: "28px", sample: "Almost before we knew it, we had left the ground." },
-  { name: "h4", weight: "500", size: "22px", sample: "Almost before we knew it, we had left the ground." },
-  { name: "Subtitle", weight: "500", size: "16px", sample: "Almost before we knew it, we had left the ground." },
-  { name: "Body", weight: "400", size: "15px", sample: "Almost before we knew it, we had left the ground." },
-];
+const typographyImage = new URL("../assets/design_system/Typography.png", import.meta.url).href;
+const buttonImage = new URL("../assets/design_system/Button - Contained.png", import.meta.url).href;
+const themeImage = new URL("../assets/design_system/Theme.png", import.meta.url).href;
+const switchImage = new URL("../assets/design_system/Switch.png", import.meta.url).href;
+const withLabelImage = new URL("../assets/design_system/WithLabel.png", import.meta.url).href;
 
-const buttonColors = [
-  { label: "Primary", className: "bg-wine text-paper" },
-  { label: "Secondary", className: "bg-navy text-paper" },
-  { label: "Error", className: "bg-crimson text-paper" },
-  { label: "Warning", className: "bg-gold text-ink" },
-  { label: "Info", className: "bg-graychip text-paper" },
-  { label: "Success", className: "bg-teal text-paper" },
-];
+function SpecBackground({ image, alt }) {
+  return (
+    <div className="absolute inset-0 flex items-start justify-center p-3 bg-transparent">
+      <div className="h-full w-full overflow-hidden rounded-xl">
+        <img
+          src={image}
+          alt={alt}
+          className="h-full w-full object-contain object-top bg-transparent"
+        />
+      </div>
+    </div>
+  );
+}
 
-const swatchColors = ["bg-wine", "bg-navy", "bg-crimson", "bg-gold", "bg-graychip", "bg-teal"];
+const specs = [
+  {
+    name: "Typography",
+    description: "A defined type scale, from display headings down to body copy, each with consistent weight and size.",
+    className: "lg:col-span-2",
+    background: <SpecBackground image={typographyImage} alt="Typography specification" />,
+  },
+  {
+    name: "Buttons",
+    description: "Contained button variants across semantic colors, in a consistent shape and sizing scale.",
+    className: "lg:col-span-1",
+    background: <SpecBackground image={buttonImage} alt="Contained button variants" />,
+  },
+  {
+    name: "Theme",
+    description: "The core color palette and theming tokens that drive every component in the system.",
+    className: "lg:col-span-1",
+    background: <SpecBackground image={themeImage} alt="Theme color tokens" />,
+  },
+  {
+    name: "Toggles",
+    description: "Switch components across their states, built for clear on/off affordance.",
+    className: "lg:col-span-1",
+    background: <SpecBackground image={switchImage} alt="Switch component" />,
+  },
+  {
+    name: "Labeled fields",
+    description: "Form inputs paired with labels, establishing a consistent pattern for data entry.",
+    className: "lg:col-span-1",
+    background: <SpecBackground image={withLabelImage} alt="Labeled input field" />,
+  },
+];
 
 export default function DesignSystem() {
   const project = getProject("design-system");
   const otherProject = projects.find((p) => p.slug !== "design-system");
 
   return (
-    <div>
-      <CaseStudyHeader
-        title={project.title}
-        summary={project.summary}
-        category={project.category}
+    <div className="min-h-screen w-full bg-white relative">
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: `
+            radial-gradient(circle at 40% 30%, rgba(181, 189, 0, 1) 0%, rgba(255,255,255,0.2) 80%, transparent 100%)
+          `,
+        }}
       />
 
-      <section className="max-w-page mx-auto px-5 sm:px-8 space-y-8 pb-20">
-        {/* Typography */}
-        <div className="border border-hairline rounded-sm p-6 sm:p-8">
-          <h2 className="text-lg font-semibold mb-1">Typography</h2>
-          <p className="text-xs text-wine underline underline-offset-2 mb-6">
-            Edit component &nbsp;|&nbsp; Documentation
-          </p>
-          <div className="divide-y divide-hairline">
-            <div className="grid grid-cols-[80px_1fr_2fr] text-xs text-muted pb-2">
-              <span>Style</span>
-              <span>Specs</span>
-              <span>Sample</span>
-            </div>
-            {typeScale.map((row) => (
-              <div
-                key={row.name}
-                className="grid grid-cols-[80px_1fr_2fr] items-center py-3 gap-4"
-              >
-                <span className="text-sm font-mono text-muted">{row.name}</span>
-                <span className="text-xs text-muted">
-                  {row.weight} · {row.size}
-                </span>
-                <span
-                  className="truncate"
-                  style={{ fontWeight: row.weight, fontSize: `min(${row.size}, 18px)` }}
-                >
-                  {row.sample}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Buttons */}
-        <div className="border border-hairline rounded-sm p-6 sm:p-8">
-          <h2 className="text-2xl font-semibold mb-1">Button</h2>
-          <p className="text-xs text-wine underline underline-offset-2 mb-8">
-            Edit component &nbsp;|&nbsp; Documentation
-          </p>
-
-          <p className="text-xs text-muted mb-4">Variant: Contained · Size: Large</p>
-          <div className="flex flex-wrap gap-3">
-            {buttonColors.map((btn) => (
-              <button
-                key={btn.label}
-                className={`px-5 py-2.5 rounded-full text-sm font-medium ${btn.className}`}
-              >
-                {btn.label}
-              </button>
-            ))}
-          </div>
-
-          <div className="flex flex-wrap gap-3 mt-3">
-            {buttonColors.map((btn) => (
-              <button
-                key={btn.label + "-icon"}
-                className={`px-5 py-2.5 rounded-full text-sm font-medium inline-flex items-center gap-2 ${btn.className}`}
-              >
-                {btn.label} <span aria-hidden>→</span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Table */}
-        <div className="border border-hairline rounded-sm p-6 sm:p-8">
-          <h2 className="text-2xl font-semibold mb-1">Table</h2>
-          <p className="text-xs text-wine underline underline-offset-2 mb-6">
-            Edit Component &nbsp;|&nbsp; Documentation
-          </p>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-teal/10 text-left">
-                  {["Head", "Head", "Head", "Head"].map((h, i) => (
-                    <th key={i} className="py-2 px-3 font-semibold">
-                      {h}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-hairline">
-                {[0, 1, 2].map((row) => (
-                  <tr key={row}>
-                    {[0, 1, 2, 3].map((cell) => (
-                      <td key={cell} className="py-2 px-3 text-muted">
-                        String value
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        {/* Toggles + Data grid */}
-        <div className="grid sm:grid-cols-2 gap-8">
-          <div className="border border-hairline rounded-sm p-6 sm:p-8">
-            <h3 className="text-sm font-semibold mb-6">Toggles</h3>
-            <div className="grid grid-cols-2 gap-y-4">
-              {swatchColors.map((c) => (
-                <div key={c} className="flex items-center gap-2">
-                  <span className={`w-9 h-5 rounded-full ${c} relative inline-block`}>
-                    <span className="absolute right-0.5 top-0.5 w-4 h-4 rounded-full bg-paper" />
-                  </span>
-                  <span className="text-xs text-muted">Label</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="border border-hairline rounded-sm p-6 sm:p-8">
-            <h3 className="text-sm font-semibold mb-6">Data Grid</h3>
-            <div className="grid grid-cols-4 gap-1.5">
-              {Array.from({ length: 16 }).map((_, i) => (
-                <div
-                  key={i}
-                  className={`h-6 rounded-sm ${
-                    i % 5 === 0 ? "bg-olive-soft" : "bg-hairline/70"
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="max-w-page mx-auto px-5 sm:px-8 pb-24">
-        <h2 className="text-3xl font-semibold mb-4">Other Projects</h2>
-        <ProjectCard
-          project={otherProject}
-          preview={
-            <div className="bg-olive/80 w-full h-full flex items-center justify-center">
-              <div className="bg-paper rounded-md w-40 h-24 shadow-sm" />
-            </div>
-          }
+      <div className="relative z-10">
+        <CaseStudyHeader
+          title={project.title}
+          summary={project.summary}
+          category={project.category}
         />
-      </section>
+
+        <section className="max-w-page mx-auto px-5 sm:px-8 py-14">
+          <BentoGrid>
+            {specs.map((spec) => (
+              <BentoCard key={spec.name} {...spec} />
+            ))}
+          </BentoGrid>
+        </section>
+
+        <section className="max-w-page mx-auto px-5 sm:px-8 py-24">
+          <h2 className="text-3xl font-semibold mb-4">Other Projects</h2>
+          <ProjectCard
+            project={otherProject}
+            preview={
+              <div className="bg-olive/80 w-full h-full flex items-center justify-center">
+                <div className="bg-paper rounded-md w-40 h-24 shadow-sm" />
+              </div>
+            }
+          />
+        </section>
+      </div>
     </div>
   );
 }
