@@ -14,14 +14,14 @@ const PROJECTS = [
     label: "Banking App",
     blurb: "User Experience",
     image: frame1,
-    href: "#/work/jovia-custom-app",
+    href: "/work/jovia-custom-app",
   },
   {
     id: "design_system",
     label: "Design System",
     blurb: "User Experience",
     image: frame2,
-    href: "#/work/design-system",
+    href: "/work/design-system",
   },
   {
     id: "module",

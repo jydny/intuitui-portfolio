@@ -1,21 +1,13 @@
 export const projects = [
   {
-    slug: "jovia-deposit-loan",
+    slug: "jovia-custom-app",
     title: "Jovia's Deposit & Loan Application",
     category: "User Experience",
     summary:
       "Redesigned Jovia's Deposit & Loan Application with a streamlined interface, intuitive UX, and refreshed UI — strengthening brand messaging and boosting engagement.",
     accent: "olive",
   },
-  {
-    slug: "jovia-custom-app",
-    title: "Custom Application Flow",
-    category: "User Experience",
-    summary:
-      "Streamlined application flow with step-by-step guidance, clear visual hierarchy, and intuitive interactions.",
-    accent: "olive",
-  },
-  {
+ {
     slug: "design-system",
     title: "Design System",
     category: "User Experience",

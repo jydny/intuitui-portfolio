@@ -18,7 +18,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/work" element={<Work />} />
             <Route path="/work/design-system" element={<DesignSystem />} />
-            <Route path="/work/jovia-deposit-loan" element={<CustomApp />} />
+            <Route path="/work/jovia-custom-app" element={<CustomApp />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
