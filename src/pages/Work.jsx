@@ -16,10 +16,13 @@ function GenericPreview({ accent }) {
 export default function Work() {
   return (
     <div className="max-w-page mx-auto px-5 sm:px-8 pt-14 pb-24">
-      <h1 className="text-3xl sm:text-5xl font-semibold tracking-tight mb-2">Work</h1>
-      <p className="text-muted max-w-lg mb-6">
-        A selection of product design and UX projects.
-      </p>
+      {/* <h1 className="text-3xl sm:text-5xl font-semibold tracking-tight mb-2"> */}
+      <h1 class="font-bold leading-snug tracking-tight text-slate-800 my-6 w-full text-2xl lg:max-w-3xl lg:text-5xl">
+        Work
+      </h1>
+      <h2 class="font-light leading-snug tracking-normal text-slate-800 my-6 w-full text-sm max-w-xs lg:max-w-md lg:text-lg"
+>        A selection of product design and UX projects.
+      </h2>
       <div>
         {projects.map((project) => (
           <ProjectCard

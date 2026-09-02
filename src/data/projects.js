@@ -8,6 +8,14 @@ export const projects = [
     accent: "olive",
   },
   {
+    slug: "jovia-custom-app",
+    title: "Custom Application Flow",
+    category: "User Experience",
+    summary:
+      "Streamlined application flow with step-by-step guidance, clear visual hierarchy, and intuitive interactions.",
+    accent: "olive",
+  },
+  {
     slug: "design-system",
     title: "Design System",
     category: "User Experience",

@@ -24,7 +24,7 @@ export default {
       },
       fontFamily: {
         sans: [
-          "Inter",
+          "DM Sans",
           "-apple-system",
           "BlinkMacSystemFont",
           "Segoe UI",
@@ -35,6 +35,10 @@ export default {
       },
       maxWidth: {
         page: "1280px",
+      },      
+      letterSpacing: {
+        tightSpacing: "-1px",
+        tighterSpacing: "-2px",        
       },
     },
   },

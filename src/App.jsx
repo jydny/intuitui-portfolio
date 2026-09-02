@@ -6,7 +6,7 @@ import Work from "./pages/Work";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import DesignSystem from "./pages/DesignSystem";
-import DepositLoan from "./pages/DepositLoan";
+import CustomApp from "./pages/CustomApp";
 
 export default function App() {
   return (
@@ -18,7 +18,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/work" element={<Work />} />
             <Route path="/work/design-system" element={<DesignSystem />} />
-            <Route path="/work/jovia-deposit-loan" element={<DepositLoan />} />
+            <Route path="/work/jovia-deposit-loan" element={<CustomApp />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>

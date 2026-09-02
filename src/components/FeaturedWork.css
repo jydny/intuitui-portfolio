@@ -1,0 +1,264 @@
+/* FeaturedWork.css — pairs with FeaturedWork.jsx (Embla version) */
+
+.featured-work-section {
+  position: relative;
+  width: 100%;
+  /* background: #f2f2f0; */
+  padding: 5rem 0;
+  overflow: hidden;
+}
+
+.featured-work-heading {
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 400;
+  color: #141414;
+  margin: 0 0 2.5rem;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .featured-work-heading {
+    font-size: 3rem;
+  }
+}
+
+/* Embla viewport — the visible "window" that clips everything outside it */
+.featured-work-viewport {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.featured-work-container {
+  display: flex;
+  align-items: stretch;
+}
+
+/* All slides share the same base size — the viewport's overflow-hidden
+   is what makes the neighbors "peek" instead of showing in full. */
+.featured-work-slide {
+  position: relative;
+  flex: 0 0 64%;
+  height: 280px;
+  margin: 0 auto;
+  cursor: pointer;
+  overflow: hidden;
+  transition: clip-path 0.7s cubic-bezier(0.65, 0, 0.35, 1),
+    opacity 0.7s cubic-bezier(0.65, 0, 0.35, 1),
+    border-radius 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@media (min-width: 640px) {
+  .featured-work-slide {
+    height: 360px;
+    flex-basis: 62%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .featured-work-slide {
+    flex-basis: min(76%, 1080px);
+    aspect-ratio: 1440 / 701;
+    height: auto;
+    max-height: 526px;
+  }
+}
+
+/* Active (center) slide — full rounded card, no clipping */
+.featured-work-slide.is-active {
+  border-radius: 15px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  cursor: default;
+  clip-path: none;
+  opacity: 1;
+  /* max-width: 1440px; */
+  max-height: 526px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Peeking neighbor on the left — angled inner (right) edge */
+.featured-work-slide.is-prev {
+  border-radius: 15px;
+  clip-path: polygon(0 0, 100% 20%, 100% 80%, 0 100%);
+  opacity: 0.9;
+  border-radius: 15px 0 0 15px;
+}
+
+/* Peeking neighbor on the right — angled inner (left) edge */
+.featured-work-slide.is-next {
+  border-radius: 15px;
+  clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 80%);
+  opacity: 0.9;
+  border-radius: 0 15px 15px 0;
+}
+
+/* Any further-away slide (only visible with >3 items mid-transition) */
+.featured-work-slide.is-hidden {
+  opacity: 0;
+}
+
+.featured-work-image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+.featured-work-tint {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  pointer-events: none;
+}
+
+/* Wordmark overlay — rendered on every slide (active + peeking) */
+.featured-work-wordmark-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  padding: 0 5rem;
+  pointer-events: none;
+}
+
+.featured-work-wordmark {
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: 2.5rem;
+  line-height: 1;
+  padding-bottom: 0.5rem;
+  user-select: none;
+}
+
+@media (min-width: 640px) {
+  .featured-work-wordmark {
+    font-size: 3.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .featured-work-wordmark {
+    font-size: 4.5rem;
+  }
+}
+
+/* Peeking slides are much narrower than the active slide, so their
+   wordmark needs to scale down independently rather than overflowing */
+.featured-work-slide.is-prev .featured-work-wordmark,
+.featured-work-slide.is-next .featured-work-wordmark {
+  font-size: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .featured-work-slide.is-prev .featured-work-wordmark,
+  .featured-work-slide.is-next .featured-work-wordmark {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .featured-work-slide.is-prev .featured-work-wordmark,
+  .featured-work-slide.is-next .featured-work-wordmark {
+    font-size: 1.75rem;
+  }
+}
+
+/* Caption bar under the active slide */
+.featured-work-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 64%;
+  margin: 1.25rem auto 0;
+  padding: 0 0.25rem;
+}
+
+@media (min-width: 640px) {
+  .featured-work-caption {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 62%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .featured-work-caption {
+    width: 60%;
+  }
+}
+
+.featured-work-caption-text {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #3a3a38;
+}
+
+.featured-work-caption-label {
+  letter-spacing: 0.1em;
+  color: #8a8a82;
+  margin-right: 0.5rem;
+}
+
+.featured-work-caption-link {
+  font-size: 0.875rem;
+  color: #141414;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  white-space: nowrap;
+}
+
+/* Navigation arrows — pinned to the active slide's inner edges */
+.featured-work-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  border: none;
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background-color 0.2s ease;
+}
+
+.featured-work-arrow:hover {
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.featured-work-arrow.left {
+  left: calc(18% + 1rem);
+}
+
+.featured-work-arrow.right {
+  right: calc(18% + 1rem);
+}
+
+/* @media (min-width: 1024px) {
+  .featured-work-arrow.left {
+    left: calc(12% + 1rem);
+  }
+  .featured-work-arrow.right {
+    right: calc(12% + 1rem);
+  }
+} */
+
+@media (max-width: 639px) {
+  .featured-work-arrow.left {
+    left: 1rem;
+  }
+  .featured-work-arrow.right {
+    right: 1rem;
+  }
+}

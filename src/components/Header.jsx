@@ -13,7 +13,10 @@ export default function Header() {
   return (
     <header className="border-b border-hairline">
       <div className="max-w-page mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
-        <Link to="/" className="text-lg font-semibold tracking-tight lowercase">
+        <Link
+          to="/"
+          className="tracking-tightSpacing lowercase font-semibold leading-snug text-slate-800 my-6 w-full text-xl max-w-lg lg:max-w-2xl lg:text-3xl"
+        >
           intuitui
         </Link>
 

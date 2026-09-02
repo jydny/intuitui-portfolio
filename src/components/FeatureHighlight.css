@@ -1,0 +1,5 @@
+.asset-container {
+  flex: none;
+  position: relative;
+  max-width: 450px;
+}
