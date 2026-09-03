@@ -1,5 +1,6 @@
 import CaseStudyHeader from "../components/CaseStudyHeader";
 import ProjectCard from "../components/ProjectCard";
+import PageGlow from "../components/PageGlow";
 import { BentoGrid, BentoCard } from "../components/Bentogrid";
 import { getProject, projects } from "../data/projects";
 
@@ -61,7 +62,7 @@ export default function Branding() {
   const otherProject = projects.find((p) => p.slug !== "branding");
 
   return (
-    <div>
+    <PageGlow gradient="radial-gradient(circle at 60% 30%, rgba(187, 221, 230, 0.7) 20%, rgba(255,255,255,0.2) 80%, transparent 100%)">
       <CaseStudyHeader
         title={project.title}
         summary={project.summary}
@@ -87,6 +88,6 @@ export default function Branding() {
           }
         />
       </section>
-    </div>
+    </PageGlow>
   );
 }

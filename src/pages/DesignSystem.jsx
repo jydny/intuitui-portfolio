@@ -1,5 +1,6 @@
 import CaseStudyHeader from "../components/CaseStudyHeader";
 import ProjectCard from "../components/ProjectCard";
+import PageGlow from "../components/PageGlow";
 import { BentoGrid, BentoCard } from "../components/Bentogrid";
 import { getProject, projects } from "../data/projects";
 
@@ -61,43 +62,32 @@ export default function DesignSystem() {
   const otherProject = projects.find((p) => p.slug !== "design-system");
 
   return (
-    <div className="min-h-screen w-full bg-white relative">
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: `
-            radial-gradient(circle at 40% 30%, rgba(181, 189, 0, 1) 0%, rgba(255,255,255,0.2) 80%, transparent 100%)
-          `,
-        }}
+    <PageGlow gradient="radial-gradient(circle at 60% 30%, rgba(29, 27, 32, 0.2) 20%, rgba(255,255,255,1) 80%, transparent 100%)">
+      <CaseStudyHeader
+        title={project.title}
+        summary={project.summary}
+        category={project.category}
       />
 
-      <div className="relative z-10">
-        <CaseStudyHeader
-          title={project.title}
-          summary={project.summary}
-          category={project.category}
+      <section className="max-w-page mx-auto px-5 sm:px-8 py-14">
+        <BentoGrid>
+          {specs.map((spec) => (
+            <BentoCard key={spec.name} {...spec} />
+          ))}
+        </BentoGrid>
+      </section>
+
+      <section className="max-w-page mx-auto px-5 sm:px-8 py-24">
+        <h2 className="text-3xl font-semibold mb-4">Other Projects</h2>
+        <ProjectCard
+          project={otherProject}
+          preview={
+            <div className="bg-olive/80 w-full h-full flex items-center justify-center">
+              <div className="bg-paper rounded-md w-40 h-24 shadow-sm" />
+            </div>
+          }
         />
-
-        <section className="max-w-page mx-auto px-5 sm:px-8 py-14">
-          <BentoGrid>
-            {specs.map((spec) => (
-              <BentoCard key={spec.name} {...spec} />
-            ))}
-          </BentoGrid>
-        </section>
-
-        <section className="max-w-page mx-auto px-5 sm:px-8 py-24">
-          <h2 className="text-3xl font-semibold mb-4">Other Projects</h2>
-          <ProjectCard
-            project={otherProject}
-            preview={
-              <div className="bg-olive/80 w-full h-full flex items-center justify-center">
-                <div className="bg-paper rounded-md w-40 h-24 shadow-sm" />
-              </div>
-            }
-          />
-        </section>
-      </div>
-    </div>
+      </section>
+    </PageGlow>
   );
 }

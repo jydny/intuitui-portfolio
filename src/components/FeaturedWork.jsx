@@ -28,14 +28,14 @@ const PROJECTS = [
     label: "Module",
     blurb: "Developement",
     image: frame3,
-    href: "#",
+    href:  "/work/modules",
   },
   {
     id: "branding",
     label: "Branding",
     blurb: "Branding",
     image: frame4,
-    href: "#",
+    href:  "/work/branding",
   },
 ];
 
