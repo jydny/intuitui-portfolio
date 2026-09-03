@@ -1,16 +1,6 @@
 import { projects } from "../data/projects";
 import ProjectCard from "../components/ProjectCard";
-import app from "../assets/proj_app_576w.png";
-import ds from "../assets/proj_ds_576w.png";
-import lab from "../assets/proj_lab_576w.png";
-import modules from "../assets/proj_modules_576w.png";
-
-const projectImages = {
-  "jovia-custom-app": app,
-  "design-system": ds,  
-  "modules": modules,
-  "branding": lab,
-};
+import { projectThumbs as projectImages } from "../lib/projectThumbs";
 
 function GenericPreview({ accent }) {
   return (

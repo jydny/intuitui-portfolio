@@ -4,6 +4,7 @@ import PageGlow from "../components/PageGlow";
 import CardImage from "../components/CardImage";
 import { BentoGrid, BentoCard } from "../components/Bentogrid";
 import { getProject, projects } from "../data/projects";
+import { projectThumbs } from "../lib/projectThumbs";
 
 const continueApplicationImage = new URL("../assets/custom_app/Continue Application.png", import.meta.url).href;
 const introImage = new URL("../assets/custom_app/Intro.png", import.meta.url).href;
@@ -56,9 +57,11 @@ export default function CustomApp() {
         <ProjectCard
           project={otherProject}
           preview={
-            <div className="bg-hairline/50 w-full h-full flex items-center justify-center">
-              <div className="bg-paper border border-hairline rounded-sm w-40 h-24" />
-            </div>
+            <img
+              src={projectThumbs[otherProject.slug]}
+              alt={otherProject.title}
+              className="w-full h-full object-cover"
+            />
           }
         />
       </section>

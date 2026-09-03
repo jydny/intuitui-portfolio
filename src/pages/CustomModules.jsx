@@ -4,6 +4,7 @@ import PageGlow from "../components/PageGlow";
 import CardImage from "../components/CardImage";
 import { BentoGrid, BentoCard } from "../components/Bentogrid";
 import { getProject, projects } from "../data/projects";
+import { projectThumbs } from "../lib/projectThumbs";
 
 const calBudget = new URL("../assets/modules/cal_budget.png", import.meta.url).href;
 const calBudgetM = new URL("../assets/modules/cal_budget_m.png", import.meta.url).href;
@@ -61,9 +62,11 @@ export default function CustomModules() {
         <ProjectCard
           project={otherProject}
           preview={
-            <div className="bg-hairline/50 w-full h-full flex items-center justify-center">
-              <div className="bg-paper border border-hairline rounded-sm w-40 h-24" />
-            </div>
+            <img
+              src={projectThumbs[otherProject.slug]}
+              alt={otherProject.title}
+              className="w-full h-full object-cover"
+            />
           }
         />
       </section>

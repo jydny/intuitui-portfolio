@@ -4,6 +4,7 @@ import PageGlow from "../components/PageGlow";
 import CardImage from "../components/CardImage";
 import { BentoGrid, BentoCard } from "../components/Bentogrid";
 import { getProject, projects } from "../data/projects";
+import { projectThumbs } from "../lib/projectThumbs";
 
 const typographyImage = new URL("../assets/design_system/Typography.png", import.meta.url).href;
 const buttonImage = new URL("../assets/design_system/Button - Contained.png", import.meta.url).href;
@@ -61,9 +62,11 @@ export default function DesignSystem() {
         <ProjectCard
           project={otherProject}
           preview={
-            <div className="bg-olive/80 w-full h-full flex items-center justify-center">
-              <div className="bg-paper rounded-md w-40 h-24 shadow-sm" />
-            </div>
+            <img
+              src={projectThumbs[otherProject.slug]}
+              alt={otherProject.title}
+              className="w-full h-full object-cover"
+            />
           }
         />
       </section>
