@@ -5,3 +5,6 @@ dist
 # staticrypt: local salt cache (regenerated on build) and password file
 .staticrypt.json
 .env
+
+# stale nested clone used as a gh-pages deploy working copy
+/intuitui-portfolio/
