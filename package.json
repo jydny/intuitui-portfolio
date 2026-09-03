@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "encrypt": "staticrypt dist/index.html -d dist --remember false --short --template-title \"intuitui\" --template-instructions \"Enter the password to view this portfolio.\"",
     "predeploy": "npm run build && npm run encrypt",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist -t -f --nojekyll"
   },
   "dependencies": {
     "@fontsource/dm-sans": "^5.3.0",
