@@ -1,6 +1,7 @@
 import CaseStudyHeader from "../components/CaseStudyHeader";
 import ProjectCard from "../components/ProjectCard";
 import PageGlow from "../components/PageGlow";
+import CardImage from "../components/CardImage";
 import { BentoGrid, BentoCard } from "../components/Bentogrid";
 import { getProject, projects } from "../data/projects";
 
@@ -10,50 +11,28 @@ const themeImage = new URL("../assets/design_system/Theme.png", import.meta.url)
 const switchImage = new URL("../assets/design_system/Switch.png", import.meta.url).href;
 const withLabelImage = new URL("../assets/design_system/WithLabel.png", import.meta.url).href;
 
-function SpecBackground({ image, alt }) {
-  return (
-    <div className="absolute inset-0 flex items-start justify-center p-3 bg-transparent">
-      <div className="h-full w-full overflow-hidden rounded-xl">
-        <img
-          src={image}
-          alt={alt}
-          className="h-full w-full object-contain object-top bg-transparent"
-        />
-      </div>
-    </div>
-  );
-}
-
+// Layout: a single centered column. Each image renders in-flow at up to 1000px
+// wide, centered in the page, and its card grows to the image's height.
 const specs = [
   {
     name: "Typography",
-    description: "A defined type scale, from display headings down to body copy, each with consistent weight and size.",
-    className: "lg:col-span-2",
-    background: <SpecBackground image={typographyImage} alt="Typography specification" />,
+    background: <CardImage src={typographyImage} alt="Typography specification" inFlow maxWidth="1000px" padding="p-0" />,
   },
   {
     name: "Buttons",
-    description: "Contained button variants across semantic colors, in a consistent shape and sizing scale.",
-    className: "lg:col-span-1",
-    background: <SpecBackground image={buttonImage} alt="Contained button variants" />,
+    background: <CardImage src={buttonImage} alt="Contained button variants" inFlow maxWidth="1000px" padding="p-0" />,
   },
   {
     name: "Theme",
-    description: "The core color palette and theming tokens that drive every component in the system.",
-    className: "lg:col-span-1",
-    background: <SpecBackground image={themeImage} alt="Theme color tokens" />,
+    background: <CardImage src={themeImage} alt="Theme color tokens" inFlow maxWidth="1000px" padding="p-0" />,
   },
   {
     name: "Toggles",
-    description: "Switch components across their states, built for clear on/off affordance.",
-    className: "lg:col-span-1",
-    background: <SpecBackground image={switchImage} alt="Switch component" />,
+    background: <CardImage src={switchImage} alt="Switch component" inFlow maxWidth="1000px" padding="p-0" />,
   },
   {
     name: "Labeled fields",
-    description: "Form inputs paired with labels, establishing a consistent pattern for data entry.",
-    className: "lg:col-span-1",
-    background: <SpecBackground image={withLabelImage} alt="Labeled input field" />,
+    background: <CardImage src={withLabelImage} alt="Labeled input field" inFlow maxWidth="1000px" padding="p-0" />,
   },
 ];
 
@@ -69,10 +48,10 @@ export default function DesignSystem() {
         category={project.category}
       />
 
-      <section className="max-w-page mx-auto px-5 sm:px-8 py-14">
-        <BentoGrid>
+      <section className="max-w-[1000px] mx-auto px-4 sm:px-0 py-14">
+        <BentoGrid rows="auto" cols="">
           {specs.map((spec) => (
-            <BentoCard key={spec.name} {...spec} />
+            <BentoCard key={spec.name} background={spec.background} />
           ))}
         </BentoGrid>
       </section>

@@ -4,18 +4,27 @@ import { cn } from "../lib/utils";
  * BentoGrid / BentoCard — a lean masonry-style grid card.
  * Adapted from a shadcn/magic-ui component (originally TypeScript/Next.js)
  * for plain Vite + React (JS). Stripped down to just what this project
- * actually uses: name, description, background, className.
+ * actually uses: background, className, plus per-card col/row spans.
+ *
+ * Each case-study page drives its own layout by passing `rows` / `cols` /
+ * `gap` to <BentoGrid>, and `lg:col-span-*` / `lg:row-span-*` on each card's
+ * `className`.
  *
  * Requires: npm install clsx
  */
 
-export function BentoGrid({ children, className, ...props }) {
+export function BentoGrid({
+  children,
+  className,
+  rows = "22rem",
+  cols = "md:grid-cols-2 lg:grid-cols-3",
+  gap = "gap-4",
+  ...props
+}) {
   return (
     <div
-      className={cn(
-        "grid w-full auto-rows-[22rem] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
-        className
-      )}
+      className={cn("grid w-full grid-cols-1", cols, gap, className)}
+      style={{ gridAutoRows: rows }}
       {...props}
     >
       {children}
@@ -33,7 +42,7 @@ export function BentoCard({ className, background, ...props }) {
       )}
       {...props}
     >
-      <div>{background}</div>
+      {background}
     </div>
   );
 }

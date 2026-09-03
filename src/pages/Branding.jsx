@@ -1,6 +1,7 @@
 import CaseStudyHeader from "../components/CaseStudyHeader";
 import ProjectCard from "../components/ProjectCard";
 import PageGlow from "../components/PageGlow";
+import CardImage from "../components/CardImage";
 import { BentoGrid, BentoCard } from "../components/Bentogrid";
 import { getProject, projects } from "../data/projects";
 
@@ -10,50 +11,30 @@ const helloImage = new URL("../assets/branding/Hello.png", import.meta.url).href
 const labImage = new URL("../assets/branding/Member Innovation Lab.png", import.meta.url).href;
 const confirmImage = new URL("../assets/branding/Opt Out Confirmation.png", import.meta.url).href;
 
-function BrandingBackground({ image, alt }) {
-  return (
-    <div className="absolute inset-0 flex items-start justify-center p-3 bg-transparent">
-      <div className="h-full w-full overflow-hidden rounded-xl">
-        <img
-          src={image}
-          alt={alt}
-          className="h-full w-full object-contain object-top bg-transparent"
-        />
-      </div>
-    </div>
-  );
-}
-
+// Layout: a single centered column. Every card is full page-width so its image
+// (rendered at intrinsic size via `natural`) sits centered in the page. Row
+// spans just give each card enough height for its image.
 const brandingItems = [
   {
-    name: "Financial Wellness Banner",
-    description: "Promotional banner designed to highlight financial wellness initiatives and brand messaging.",
-    className: "lg:col-span-2",
-    background: <BrandingBackground image={bannerImage} alt="Financial wellness banner" />,
-  },
-  {
-    name: "Checkbox Design",
-    description: "Custom checkbox component with branded styling and visual hierarchy.",
-    className: "lg:col-span-1",
-    background: <BrandingBackground image={checkboxImage} alt="Checkbox background" />,
+    name: "Innovation Lab",
+    className: "lg:row-span-1",
+    background: <CardImage src={labImage} alt="Member innovation lab" natural position="center" />,
   },
   {
     name: "Hello Screen",
-    description: "Welcoming onboarding screen with brand identity and user guidance.",
-    className: "lg:col-span-1",
-    background: <BrandingBackground image={helloImage} alt="Hello screen" />,
+    className: "lg:row-span-2",
+    background: <CardImage src={helloImage} alt="Hello screen" natural position="center" />,
   },
   {
-    name: "Innovation Lab",
-    description: "Member Innovation Lab branding and visual communication system.",
-    className: "lg:col-span-2",
-    background: <BrandingBackground image={labImage} alt="Member innovation lab" />,
+    name: "Checkbox Design",
+    className: "lg:row-span-2",
+    background: <CardImage src={checkboxImage} alt="Checkbox background" natural position="center" />,
   },
   {
     name: "Opt Out Confirmation",
-    description: "Clear and branded confirmation screen for user opt-out flows.",
-    className: "lg:col-span-1",
-    background: <BrandingBackground image={confirmImage} alt="Opt out confirmation" />,
+    // Portrait screen capped at 500px wide; row-span-3 gives it the height.
+    className: "lg:row-span-3",
+    background: <CardImage src={confirmImage} alt="Opt out confirmation" natural position="center" maxWidth="500px" />,
   },
 ];
 
@@ -69,15 +50,15 @@ export default function Branding() {
         category={project.category}
       />
 
-      <section className="max-w-page mx-auto px-5 sm:px-8 py-14">
-        <BentoGrid>
+      <section className="max-w-[1000px] mx-auto px-5 sm:px-8 py-14">
+        <BentoGrid rows="18rem" cols="">
           {brandingItems.map((item) => (
-            <BentoCard key={item.name} {...item} />
+            <BentoCard key={item.name} className={item.className} background={item.background} />
           ))}
         </BentoGrid>
       </section>
 
-      <section className="max-w-page mx-auto px-5 sm:px-8 py-24">
+      <section className="max-w-[1000px] mx-auto px-5 sm:px-8 py-24">
         <h2 className="text-3xl font-semibold mb-4">Other Projects</h2>
         <ProjectCard
           project={otherProject}
