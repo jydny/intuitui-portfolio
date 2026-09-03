@@ -14,28 +14,28 @@ const PROJECTS = [
     label: "Banking App",
     blurb: "User Experience",
     image: frame1,
-    href: "#/work/jovia-deposit-loan",
+    href: "/work/jovia-custom-app",
   },
   {
     id: "design_system",
     label: "Design System",
     blurb: "User Experience",
     image: frame2,
-    href: "#/work/design-system",
+    href: "/work/design-system",
   },
   {
     id: "module",
     label: "Module",
     blurb: "Developement",
     image: frame3,
-    href: "#",
+    href:  "/work/modules",
   },
   {
     id: "branding",
     label: "Branding",
     blurb: "Branding",
     image: frame4,
-    href: "#",
+    href:  "/work/branding",
   },
 ];
 
@@ -48,7 +48,7 @@ export default function FeaturedWork() {
     align: "center",
     containScroll: false,
     skipSnaps: false,
-    duration: 45,
+    duration: 45, // higher = slower/smoother glide (embla's internal scroll frames)
   });
 
   const [selectedIndex, setSelectedIndex] = useState(0);

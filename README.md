@@ -57,6 +57,42 @@ Then in your repo: **Settings → Pages → Source → `gh-pages` branch**.
 Your site will be live at:
 `https://yourusername.github.io/your-repo-name`
 
+## Password protection
+
+GitHub Pages has no server, so it can't enforce a login. Instead the deploy
+pipeline builds the **whole app (JS, CSS, and every image) into a single
+`dist/index.html`** via `vite-plugin-singlefile`, then encrypts that file with
+[StatiCrypt](https://github.com/robinmoisson/staticrypt) (AES-256). Visitors
+get a password prompt; nothing renders and no asset is reachable until they
+enter the correct password.
+
+Set the password when deploying — either export it:
+
+```bash
+# macOS / Linux
+STATICRYPT_PASSWORD='your-password' npm run deploy
+
+# Windows PowerShell
+$env:STATICRYPT_PASSWORD='your-password'; npm run deploy
+```
+
+…or just run `npm run deploy` and StatiCrypt will prompt for it interactively.
+
+`npm run predeploy` runs `build` then `encrypt` automatically, so `npm run
+deploy` is the only command you need.
+
+**Trade-offs**
+
+- One shared password for all visitors; no per-user accounts or revocation.
+  Anyone who has the password (or the auto-decrypt share link) has the content.
+- The encrypted `index.html` is ~13 MB and must download fully before the
+  prompt appears. Compress the source images in `src/assets/` to shrink it.
+- For per-person access or real accounts, host on Cloudflare Pages + Access
+  (or Netlify/Vercel password protection) instead of GitHub Pages.
+
+To publish **without** a password, run `npm run build` then `npx gh-pages -d
+dist` (skipping the `encrypt` step).
+
 ## Customizing
 
 - **Copy & content**: `src/data/projects.js` and the text inside each page

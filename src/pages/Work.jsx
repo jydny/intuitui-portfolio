@@ -1,5 +1,6 @@
 import { projects } from "../data/projects";
 import ProjectCard from "../components/ProjectCard";
+import { projectThumbs as projectImages } from "../lib/projectThumbs";
 
 function GenericPreview({ accent }) {
   return (
@@ -28,7 +29,13 @@ export default function Work() {
           <ProjectCard
             key={project.slug}
             project={project}
-            preview={<GenericPreview accent={project.accent} />}
+            preview={
+              projectImages[project.slug] ? (
+                <img src={projectImages[project.slug]} alt={project.title} className="w-full h-full object-cover" />
+              ) : (
+                <GenericPreview accent={project.accent} />
+              )
+            }
           />
         ))}
       </div>
